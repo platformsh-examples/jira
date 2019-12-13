@@ -1,0 +1,29 @@
+--- jira/conf/logging.properties.orig	2019-07-17 19:14:05.812494000 -0400
++++ jira/conf/logging.properties	2019-07-17 19:14:17.538890000 -0400
+@@ -23,22 +23,22 @@
+ ############################################################
+ 
+ 1catalina.org.apache.juli.AsyncFileHandler.level = FINE
+-1catalina.org.apache.juli.AsyncFileHandler.directory = ${catalina.base}/logs
++1catalina.org.apache.juli.AsyncFileHandler.directory = ${log.dir}
+ 1catalina.org.apache.juli.AsyncFileHandler.prefix = catalina.
+ 1catalina.org.apache.juli.AsyncFileHandler.encoding = UTF-8
+ 
+ 2localhost.org.apache.juli.AsyncFileHandler.level = FINE
+-2localhost.org.apache.juli.AsyncFileHandler.directory = ${catalina.base}/logs
++2localhost.org.apache.juli.AsyncFileHandler.directory = ${log.dir}
+ 2localhost.org.apache.juli.AsyncFileHandler.prefix = localhost.
+ 2localhost.org.apache.juli.AsyncFileHandler.encoding = UTF-8
+ 
+ 3manager.org.apache.juli.AsyncFileHandler.level = FINE
+-3manager.org.apache.juli.AsyncFileHandler.directory = ${catalina.base}/logs
++3manager.org.apache.juli.AsyncFileHandler.directory = ${log.dir}
+ 3manager.org.apache.juli.AsyncFileHandler.prefix = manager.
+ 3manager.org.apache.juli.AsyncFileHandler.encoding = UTF-8
+ 
+ 4host-manager.org.apache.juli.AsyncFileHandler.level = FINE
+-4host-manager.org.apache.juli.AsyncFileHandler.directory = ${catalina.base}/logs
++4host-manager.org.apache.juli.AsyncFileHandler.directory = ${log.dir}
+ 4host-manager.org.apache.juli.AsyncFileHandler.prefix = host-manager.
+ 4host-manager.org.apache.juli.AsyncFileHandler.encoding = UTF-8
+ 

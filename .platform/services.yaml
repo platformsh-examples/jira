@@ -1,0 +1,3 @@
+db:
+    type: postgresql:9.6
+    disk: 2024

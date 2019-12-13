@@ -1,0 +1,43 @@
+--- jira/conf/server.xml.orig	2019-04-19 12:20:34.929307000 -0400
++++ jira/conf/server.xml	2019-04-19 12:24:42.974464000 -0400
+@@ -32,11 +32,14 @@
+         -->
+ 
+         <!-- Relaxing chars because of JRASERVER-67974 -->
++		<!--
+         <Connector port="8080" relaxedPathChars="[]|" relaxedQueryChars="[]|{}^&#x5c;&#x60;&quot;&lt;&gt;"
+                    maxThreads="150" minSpareThreads="25" connectionTimeout="20000" enableLookups="false"
+                    maxHttpHeaderSize="8192" protocol="HTTP/1.1" useBodyEncodingForURI="true" redirectPort="8443"
+                    acceptCount="100" disableUploadTimeout="true" bindOnInit="false"/>
+ 
++		-->
++
+         <!--
+          ==============================================================================================================
+          HTTP - Proxying Jira via Apache or Nginx over HTTP
+@@ -73,13 +76,11 @@
+          ==============================================================================================================
+         -->
+ 
+-        <!--
+-        <Connector port="8080" relaxedPathChars="[]|" relaxedQueryChars="[]|{}^&#x5c;&#x60;&quot;&lt;&gt;"
++        <Connector port="${port.http}" relaxedPathChars="[]|" relaxedQueryChars="[]|{}^&#x5c;&#x60;&quot;&lt;&gt;"
+                    maxThreads="150" minSpareThreads="25" connectionTimeout="20000" enableLookups="false"
+                    maxHttpHeaderSize="8192" protocol="HTTP/1.1" useBodyEncodingForURI="true" redirectPort="8443"
+-                   acceptCount="100" disableUploadTimeout="true" bindOnInit="false" secure="true" scheme="https"
+-                   proxyName="<subdomain>.<domain>.com" proxyPort="443"/>
+-        -->
++                   acceptCount="100" disableUploadTimeout="true" bindOnInit="false" secure="true" scheme="${http.scheme}"
++                   proxyName="${proxy.name}" proxyPort="${proxy.port}"/>
+ 
+         <!--
+          ==============================================================================================================
+@@ -97,7 +98,7 @@
+         -->
+ 
+         <Engine name="Catalina" defaultHost="localhost">
+-            <Host name="localhost" appBase="webapps" unpackWARs="true" autoDeploy="true">
++            <Host name="localhost" appBase="${appbase.dir}" unpackWARs="true" autoDeploy="true" workDir="${work.dir}">
+ 
+                 <Context path="" docBase="${catalina.home}/atlassian-jira" reloadable="false" useHttpOnly="true">
+                     <Resource name="UserTransaction" auth="Container" type="javax.transaction.UserTransaction"

@@ -1,0 +1,23 @@
+name: app
+type: java:8
+disk: 2048
+
+relationships:
+    database: "db:postgresql"
+  
+mounts:
+    home:
+        source: local
+        source_path: 'home'
+    'jira/logs/':
+        source: local
+        source_path: logs        
+  
+web:
+    commands:
+        start: "sh ./start.sh"
+
+hooks:
+    build: "bash ${PLATFORM_APP_DIR}/build.sh"
+    deploy: "sh ${PLATFORM_APP_DIR}/deploy.sh"
+

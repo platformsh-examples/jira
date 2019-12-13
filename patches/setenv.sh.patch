@@ -1,0 +1,35 @@
+--- jira/bin/setenv.sh.orig	2018-01-11 06:58:48.000000000 -0500
++++ jira/bin/setenv.sh	2018-01-26 19:54:16.918710000 -0500
+@@ -76,17 +76,22 @@
+ fi
+ export CATALINA_PID
+ 
+-if [ -z "$CATALINA_BASE" ]; then
+-  if [ -z "$CATALINA_HOME" ]; then
+-    LOGBASE=$PRGDIR
+-    LOGTAIL=..
+-  else
+-    LOGBASE=$CATALINA_HOME
+-    LOGTAIL=.
+-  fi
++if [ -z "$JIRA_LOGBASE" ]; then
++    if [ -z "$CATALINA_BASE" ]; then
++      if [ -z "$CATALINA_HOME" ]; then
++        LOGBASE=$PRGDIR
++        LOGTAIL=..
++      else
++        LOGBASE=$CATALINA_HOME
++        LOGTAIL=.
++      fi
++    else
++      LOGBASE=$CATALINA_BASE
++      LOGTAIL=.
++    fi
+ else
+-  LOGBASE=$CATALINA_BASE
+-  LOGTAIL=.
++    LOGBASE=$JIRA_LOGBASE
++    LOGTAIL=.
+ fi
+ 
+ PUSHED_DIR=`pwd`
